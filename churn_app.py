@@ -92,21 +92,46 @@ if model is not None:
         }
         
         input_df = pd.DataFrame([input_data])
+
+        # Binary encoding
+binary_map = {
+    "Male": 1,
+    "Female": 0,
+    "Yes": 1,
+    "No": 0
+}
+
+input_df["gender"] = input_df["gender"].map({"Male":1, "Female":0})
+
+for col in ["Partner","Dependents","PhoneService","PaperlessBilling"]:
+    input_df[col] = input_df[col].map({"Yes":1,"No":0})
+
+# Encode all remaining categorical columns
+categorical_cols = [
+    "MultipleLines",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "Contract",
+    "PaymentMethod"
+]
+
+for col in categorical_cols:
+    if col in encoders:
+        input_df[col] = encoders[col].transform(input_df[col])
+
+# Convert everything to numeric
+input_df = input_df.astype(float)
         
-        # Encode binary features
-        input_df['gender'] = input_df['gender'].map({'Male': 1, 'Female': 0})
-        for col in ['Partner', 'Dependents', 'PhoneService', 'PaperlessBilling']:
-            if col in input_df.columns:
-                input_df[col] = input_df[col].map({'Yes': 1, 'No': 0})
-        
-        # Encode categorical features using saved encoders
-        for column, encoder in encoders.items():
-            if column in input_df.columns and input_df[column].dtype == 'object':
-                input_df[column] = encoder.transform(input_df[column])
                 st.write("Loaded Encoders:",encoders.keys)
-        
+        proba = model.predict_proba(input_df)[0] 
+        print(input_df.dtypes)
         prediction = model.predict(input_df)[0]
-        proba = model.predict_proba(input_df)[0]
+        
         
         st.markdown("---")
         
