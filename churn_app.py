@@ -149,32 +149,32 @@ if model is not None:
                 "StreamingTV",
                 "StreamingMovies",
                 "Contract",
-                "PaymentMethod"
-              ]
+                "PaymentMethod",
+            ]
     
-              for col in categorical_cols:
-                  if col in encoders:
-                     input_df[col] = encoders[col].transform(input_df[col])
+            for col in categorical_cols:
+                if col in encoders:
+                    input_df[col] = encoders[col].transform(input_df[col])
     
-              # Convert everything to numeric
-              input_df = input_df.astype(float)
-              st.write("Loaded Encoders:",encoders.keys)
+            # Convert everything to numeric
+            input_df = input_df.astype(float)
+            st.write("Loaded Encoders:",encoders.keys)
 
-              proba = model.predict_proba(input_df)[0] 
-              print(input_df.dtypes)
-              prediction = model.predict(input_df)[0]
+            proba = model.predict_proba(input_df)[0] 
+            print(input_df.dtypes)
+            prediction = model.predict(input_df)[0]
             
             
-              st.markdown("---")
+            st.markdown("---")
             
-              col1, col2, col3 = st.columns(3)
+            col1, col2, col3 = st.columns(3)
             
-              with col1:
-                 if prediction == 1:
-                     st.markdown(
-                         '<div class="prediction-box churn">WILL CHURN</div>', 
-                         unsafe_allow_html=True
-                     )
+            with col1:
+                if prediction == 1:
+                    st.markdown(
+                        '<div class="prediction-box churn">WILL CHURN</div>', 
+                        unsafe_allow_html=True
+                    )
                  else:
                      st.markdown(
                          '<div class="prediction-box no-churn">WILL STAY</div>',
