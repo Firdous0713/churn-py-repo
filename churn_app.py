@@ -99,11 +99,11 @@ if model is not None:
                     "Bank transfer (automatic)",
                     "Credit card (automatic)",
                 ],
-            )
-            monthly_charges = st.number_input("Monthly Charges ($)", 0.0, 150.0, 50.0, 5.0)
-            total_charges = st.number_input(
-                "Total Charges ($)", 0.0, 10000.0, monthly_charges * tenure, 50.0
-            )
+        )
+        monthly_charges = st.number_input("Monthly Charges ($)", 0.0, 150.0, 50.0, 5.0)
+        total_charges = st.number_input(
+            "Total Charges ($)", 0.0, 10000.0, monthly_charges * tenure, 50.0
+        )
         
         st.markdown("---")
         
