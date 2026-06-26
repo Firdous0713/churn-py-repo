@@ -63,35 +63,35 @@ if model is not None:
         multiple_lines = st.selectbox(
             "Multiple Lines", ["No", "Yes", "No phone service"]
         )
-            internet_service = st.selectbox(
-                "Internet Service", ["DSL", "Fiber optic", "No"]
-            )
-            online_security = st.selectbox(
-                "Online Security", ["No", "Yes", "No internet service"]
-            )
-            online_backup = st.selectbox(
-                "Online Backup", ["No", "Yes", "No internet service"]
-            )
+        internet_service = st.selectbox(
+            "Internet Service", ["DSL", "Fiber optic", "No"]
+        )
+        online_security = st.selectbox(
+            "Online Security", ["No", "Yes", "No internet service"]
+        )
+        online_backup = st.selectbox(
+            "Online Backup", ["No", "Yes", "No internet service"]
+        )
         
-     with col2:
-            device_protection = st.selectbox(
-                "Device Protection", ["No", "Yes", "No internet service"]
-            )
-            tech_support = st.selectbox(
-                "Tech Support", ["No", "Yes", "No internet service"]
-            )
-            streaming_tv = st.selectbox(
-                "Streaming TV", ["No", "Yes", "No internet service"]
-            )
-            streaming_movies = st.selectbox(
-                "Streaming Movies", ["No", "Yes", "No internet service"]
-            )
+    with col2:
+        device_protection = st.selectbox(
+            "Device Protection", ["No", "Yes", "No internet service"]
+        )
+        tech_support = st.selectbox(
+            "Tech Support", ["No", "Yes", "No internet service"]
+        )
+        streaming_tv = st.selectbox(
+            "Streaming TV", ["No", "Yes", "No internet service"]
+        )
+        streaming_movies = st.selectbox(
+            "Streaming Movies", ["No", "Yes", "No internet service"]
+        )
             
-            st.subheader("Account")
-            tenure = st.slider("Tenure (months)", 0, 72, 12)
-            contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"])
-            paperless_billing = st.selectbox("Paperless Billing", ["Yes", "No"])
-            payment_method = st.selectbox(
+        st.subheader("Account")
+        tenure = st.slider("Tenure (months)", 0, 72, 12)
+        contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"])
+        paperless_billing = st.selectbox("Paperless Billing", ["Yes", "No"])
+        payment_method = st.selectbox(
                 "Payment Method", 
                 [
                     "Electronic check",
