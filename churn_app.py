@@ -175,49 +175,51 @@ if model is not None:
                         '<div class="prediction-box churn">WILL CHURN</div>', 
                         unsafe_allow_html=True
                     )
-                 else:
-                     st.markdown(
-                         '<div class="prediction-box no-churn">WILL STAY</div>',
-                         unsafe_allow_html=True)
+                else:
+                    st.markdown(
+                        '<div class="prediction-box no-churn">WILL STAY</div>',
+                        unsafe_allow_html=True
+                    )
             
-              with col2:
-                 st.metric("Confidence", f"{max(proba) * 100:.1f}%")
+            with col2:
+                st.metric("Confidence", f"{max(proba) * 100:.1f}%")
             
-              with col3:
-                  risk = "High" if proba[1] > 0.7 else "Medium" if proba[1] > 0.4 else "Low"
-                 st.metric("Risk Level", risk)
+            with col3:
+                risk = "High" if proba[1] > 0.7 else "Medium" if proba[1] > 0.4 else "Low"
+                st.metric("Risk Level", risk)
             
-              fig = go.Figure(
-                  data=[
-                      go.Bar(
-                          name='No Churn',
-                          x=['Probability'],
-                          y=[proba[0]],
-                          marker_color='#2ecc71',
-                      ),
-                      go.Bar(
-                          name='Churn',
-                          x=['Probability'],
-                          y=[proba[1]],
-                          marker_color='#e74c3c',
-                      ),
-                  ]
-              )
-              fig.update_layout(
-                  title="Prediction Probabilities",
-                  yaxis_title="Probability",
-                  barmode='group',
-                  height=350
-              )
-              st.plotly_chart(fig, use_container_width=True)
+            fig = go.Figure(
+                data=[
+                    go.Bar(
+                        name='No Churn',
+                        x=['Probability'],
+                        y=[proba[0]],
+                        marker_color='#2ecc71',
+                    ),
+                    go.Bar(
+                        name='Churn',
+                        x=['Probability'],
+                        y=[proba[1]],
+                        marker_color='#e74c3c',
+                    ),
+                ]
+            )
+            fig.update_layout(
+                title="Prediction Probabilities",
+                yaxis_title="Probability",
+                barmode='group',
+                height=350
+            )
+            st.plotly_chart(fig, use_container_width=True)
             
-              if prediction == 1:
-                  st.warning(
-                      "**At Risk:** Offer retention incentives, upgrade to longer contract, provide better support"
-                  )
-              else:
-                  st.success("**Low Risk:** Continue excellent service, send surveys, offer loyalty benefits"
-                  )
+            if prediction == 1:
+                st.warning(
+                    "**At Risk:** Offer retention incentives, upgrade to longer contract, provide better support"
+                )
+            else:
+                st.success(
+                    "**Low Risk:** Continue excellent service, send surveys, offer loyalty benefits"
+                )
         
         with st.sidebar:
             st.header("Model Info")
